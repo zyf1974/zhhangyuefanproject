@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系我们 | 您的公司名称</title>
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 头部样式 */
+        header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        /* 主要内容区域 */
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 40px 0;
+            gap: 30px;
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            border-left: 4px solid #3498db;
+            padding-left: 10px;
+        }
+        
+        /* 联系信息样式 */
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
+        .info-icon {
+            background: #3498db;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .info-details h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        /* 表单样式 */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+        
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+        }
+        
+        /* 地图样式 */
+        .map-container {
+            margin: 40px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .map-placeholder {
+            background: #e0e0e0;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 1.2rem;
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .contact-container {
+                flex-direction: column;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+        }
+        
+        /* 表单验证样式 */
+        .error {
+            color: #e74c3c;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        input.error-field, textarea.error-field {
+            border-color: #e74c3c;
+        }
+        
+        .success-message {
+            background: #2ecc71;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- 页面头部 -->
+    <header>
+        <div class="container">
+            <h1>联系我们</h1>
+            <p>我们很乐意听取您的意见和反馈</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <!-- 联系信息和表单区域 -->
+        <div class="contact-container">
+            <!-- 联系信息 -->
+            <div class="contact-info">
+                <h2 class="section-title">联系信息</h2>
+                
+                <div class="info-item">
+                    <div class="info-icon">📍</div>
+                    <div class="info-details">
+                        <h3>地址</h3>
+                        <p>河北省张家口市桥东区八一大街3号院1号楼2单元301</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">📞</div>
+                    <div class="info-details">
+                        <h3>电话</h3>
+                        <p>13833334406</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">✉️</div>
+                    <div class="info-details">
+                        <h3>邮箱</h3>
+                        <p>1138768123@qq.com</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">🕒</div>
+                    <div class="info-details">
+                        <h3>工作时间</h3>
+                        <p>周一至周五: 9:00 - 18:00</p>
+                        <p>周六: 10:00 - 16:00</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 联系表单 -->
+            <div class="contact-form">
+                <h2 class="section-title">发送消息</h2>
+                
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">姓名 *</label>
+                        <input type="text" id="name" name="name" required>
+                        <div class="error" id="nameError">请输入有效的姓名</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">邮箱 *</label>
+                        <input type="email" id="email" name="email" required>
+                        <div class="error" id="emailError">请输入有效的邮箱地址</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">主题 *</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">请选择主题</option>
+                            <option value="general">一般咨询</option>
+                            <option value="support">技术支持</option>
+                            <option value="feedback">产品反馈</option>
+                            <option value="partnership">合作咨询</option>
+                            <option value="other">其他</option>
+                        </select>
+                        <div class="error" id="subjectError">请选择一个主题</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">消息内容 *</label>
+                        <textarea id="message" name="message" required></textarea>
+                        <div class="error" id="messageError">请输入消息内容</div>
+                    </div>
+                    
+                    <button type="submit" class="btn">发送消息</button>
+                    
+                    <div class="success-message" id="successMessage">
+                        感谢您的留言！我们会尽快回复您。
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <!-- 地图区域 -->
+        <div class="map-container">
+            <div class="map-placeholder">
+                [此处为地图嵌入位置]
+            </div>
+        </div>
+    </div>
+    
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 您的公司名称. 保留所有权利.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // 表单验证和提交处理
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // 重置错误状态
+            resetErrors();
+            
+            // 获取表单值
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value.trim();
+            
+            let isValid = true;
+            
+            // 验证姓名
+            if (name === '') {
+                showError('nameError', 'name');
+                isValid = false;
+            }
+            
+            // 验证邮箱
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (email === '' || !emailPattern.test(email)) {
+                showError('emailError', 'email');
+                isValid = false;
+            }
+            
+            // 验证主题
+            if (subject === '') {
+                showError('subjectError', 'subject');
+                isValid = false;
+            }
+            
+            // 验证消息
+            if (message === '') {
+                showError('messageError', 'message');
+                isValid = false;
+            }
+            
+            // 如果表单有效，显示成功消息
+            if (isValid) {
+                document.getElementById('successMessage').style.display = 'block';
+                // 在实际应用中，这里应该发送表单数据到服务器
+                // 例如使用 fetch 或 XMLHttpRequest
+                this.reset();
+                
+                // 3秒后隐藏成功消息
+                setTimeout(() => {
+                    document.getElementById('successMessage').style.display = 'none';
+                }, 5000);
+            }
+        });
+        
+        // 显示错误消息
+        function showError(errorId, fieldId) {
+            document.getElementById(errorId).style.display = 'block';
+            document.getElementById(fieldId).classList.add('error-field');
+        }
+        
+        // 重置错误状态
+        function resetErrors() {
+            const errors = document.querySelectorAll('.error');
+            errors.forEach(error => {
+                error.style.display = 'none';
+            });
+            
+            const fields = document.querySelectorAll('input, textarea, select');
+            fields.forEach(field => {
+                field.classList.remove('error-field');
+            });
+            
+            document.getElementById('successMessage').style.display = 'none';
+        }
+        
+        // 实时验证输入
+        document.querySelectorAll('#contactForm input, #contactForm textarea, #contactForm select').forEach(field => {
+            field.addEventListener('input', function() {
+                this.classList.remove('error-field');
+                const errorId = this.id + 'Error';
+                document.getElementById(errorId).style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>项目五：老年轮椅外观专利展示</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #3a5a8c 0%, #2c3e50 100%);
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .btn-container {
+            margin-top: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #ff7e5f;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 0 10px;
+        }
+        
+        .btn:hover {
+            background-color: #ff6b47;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-secondary {
+            background-color: #4a6fa5;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #3a5a8c;
+        }
+        
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        
+        @media (min-width: 992px) {
+            .content-wrapper {
+                grid-template-columns: 3fr 2fr;
+            }
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: #3a5a8c;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eaeaea;
+        }
+        
+        .images-section {
+            margin-bottom: 30px;
+        }
+        
+        .image-container {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 25px;
+            transition: transform 0.3s ease;
+        }
+        
+        .image-container:hover {
+            transform: translateY(-5px);
+        }
+        
+        .image-label {
+            padding: 15px 20px;
+            background-color: #f1f5f9;
+            font-weight: 600;
+            color: #3a5a8c;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .image-tag {
+            background-color: #3a5a8c;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+        
+        .image-content {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .landscape-image {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            max-height: 400px;
+            object-fit: cover;
+            border: 1px solid #eee;
+        }
+        
+        .portrait-image {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            max-height: 500px;
+            object-fit: cover;
+            border: 1px solid #eee;
+        }
+        
+        .image-note {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 10px;
+            text-align: center;
+            font-style: italic;
+        }
+        
+        .description-section {
+            margin-bottom: 30px;
+        }
+        
+        .description-content {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .patent-section {
+            margin-bottom: 30px;
+        }
+        
+        .features-list {
+            list-style-type: none;
+            margin-top: 20px;
+        }
+        
+        .features-list li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            align-items: center;
+        }
+        
+        .features-list li i {
+            color: #4a6fa5;
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .patent-details {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .patent-details p {
+            margin-bottom: 15px;
+            padding-left: 10px;
+            border-left: 3px solid #4a6fa5;
+        }
+        
+        .patent-details strong {
+            color: #3a5a8c;
+        }
+        
+        .highlight-box {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #f0f7ff;
+            border-radius: 8px;
+            border-left: 5px solid #4a6fa5;
+        }
+        
+        .project-details {
+            margin-top: 40px;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f9fa;
+            border: 2px dashed #ccc;
+            border-radius: 5px;
+            padding: 40px 20px;
+            color: #777;
+        }
+        
+        .placeholder i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #aaa;
+        }
+        
+        .placeholder-text {
+            font-size: 1.1rem;
+            margin-top: 10px;
+            text-align: center;
+        }
+        
+        .image-size {
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>项目五：老年轮椅外观专利展示</h1>
+            <p class="subtitle">人性化设计 · 安全舒适 · 提升老年人生活质量</p>
+            <div class="btn-container">
+                <a href="#design-images" class="btn">
+                    <i class="fas fa-images"></i> 查看效果图
+                </a>
+                <a href="#project-details" class="btn btn-secondary">
+                    <i class="fas fa-info-circle"></i> 项目详情
+                </a>
+            </div>
+        </header>
+        
+        <div class="content-wrapper">
+            <div class="main-content">
+                <section id="design-images" class="images-section">
+                    <h2 class="section-title">外观设计效果图</h2>
+                    
+                    <!-- 效果图1 -->
+                    <div class="image-container">
+                        <div class="image-label">
+                            <span>效果图一</span>
+                            <span class="image-tag">横向 6:8比例</span>
+                        </div>
+                        <div class="image-content">
+                            <!-- 这里是您可以替换的图片位置 -->
+                            <!-- 替换说明：删除上面的div，使用以下代码 -->
+                            <img src="images/xm5/1.jpg" alt="老年轮椅正面效果图" class="landscape-image">
+                            <p class="image-note">横向比例 6:8 | 展示老年轮椅的整体外观和结构设计</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 效果图2 -->
+                    <div class="image-container">
+                        <div class="image-label">
+                            <span>效果图二</span>
+                            <span class="image-tag">横向 6:8比例</span>
+                        </div>
+                        <div class="image-content">
+                            <!-- 这里是您可以替换的图片位置 -->
+                            <!-- 替换说明：删除上面的div，使用以下代码 -->
+                            <img src="images/xm5/2.jpg" alt="老年轮椅侧面效果图" class="landscape-image">
+                            <p class="image-note">横向比例 6:8 | 展示老年轮椅的斜侧面</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 专利证书 -->
+                    <div class="image-container">
+                        <div class="image-label">
+                            <span>外观设计专利证书</span>
+                            <span class="image-tag">竖向 A4比例</span>
+                        </div>
+                        <div class="image-content">
+                            <!-- 这里是您可以替换的图片位置 -->
+                            <!-- 替换说明：删除上面的div，使用以下代码 -->
+                            <img src="images/xm5/3.jpg" alt="外观设计专利证书" class="portrait-image">
+                            <p class="image-note">竖向A4比例 | 外观设计专利证书</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
+            <div class="sidebar">
+                <section class="description-section">
+                    <h2 class="section-title">设计说明</h2>
+                    <div class="description-content">
+                        <h3>设计理念</h3>
+                        <p>本外观设计专利针对老年用户群体，以"安全、舒适、便捷"为核心设计理念，通过人性化的外观设计和细节处理，提升老年用户的使用体验和生活质量。</p>
+                        
+                        <h3 style="margin-top: 25px;">设计说明</h3>
+                        <p>该轮椅设计降低了整体产品的重心，不仅将靠背和扶手高度减小，还在整体造型上给人一种低矮亲人的尺度感，符合老年使用人群的心理需求，给予老年群体上下轮椅的时行动的便捷性。轮椅扶手相较于普通轮椅更长，并且端部装有抓握把手，让使用者在上轮椅时不必摔倒。轮椅扶手可以围绕顶部进行环绕旋转，满足不同身高、动作和舒适度的要求。轮椅底部放置圆柱形信号接收器等其他装置，保证产品的造型尽可能简洁，结构逻辑分明。</p>
+                        </ul>
+                        
+                        <div class="highlight-box">
+                            <p><i class="fas fa-lightbulb"></i> <strong>设计目标：</strong>本设计旨在消除老年用户对辅助设备的抵触心理，通过温暖、亲切的外观设计，让轮椅不仅是代步工具，更是提升生活品质的伙伴。</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="patent-section">
+                    <h2 class="section-title">专利信息</h2>
+                    <div class="patent-details">
+                        <p><strong>专利名称：</strong>老年轮椅</p>
+                        <p><strong>专利类型：</strong>外观设计专利</p>
+                        <p><strong>专利号：</strong>ZL 2023 3 0409961.8</p>
+                        <p><strong>申请日期：</strong>2023年7月1日</p>
+                        <p><strong>授权日期：</strong>2023年12月26日</p>
+                        <p><strong>专利权人：</strong>河北建筑工程学院</p>
+                        <p><strong>法律状态：</strong>专利权有效</p>
+                        <p><strong>设计人：</strong>张岳帆、边辉、高晓刚、张灿果</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+        
+        <section id="project-details" class="project-details">
+            <h2 class="section-title">项目五详情</h2>
+            <p>本项目为老年轮椅外观设计专利，已获得国家知识产权局授权。该设计针对老年用户的生理和心理需求，在安全性、舒适性和易用性方面进行了全面优化。</p>
+            
+            <div style="margin-top: 20px;">
+                <h3>项目特色</h3>
+                <ul class="features-list" style="margin-top: 10px;">
+                    <li><i class="fas fa-check-circle"></i> 获得国家外观设计专利认证</li>
+                    <li><i class="fas fa-check-circle"></i> 已完成原型测试，用户反馈良好</li>
+                    <li><i class="fas fa-check-circle"></i> 适合大规模生产，成本可控</li>
+                    <li><i class="fas fa-check-circle"></i> 模块化设计，便于维护和升级</li>
+                </ul>
+            </div>
+            
+            <div class="highlight-box" style="margin-top: 25px;">
+                <h3><i class="fas fa-link"></i> 相关链接</h3>
+                <div style="margin-top: 15px;">
+                    <p>如需查看更详细的项目资料、技术参数或商业合作，请联系项目负责人：</p>
+                    <div style="margin-top: 15px; padding: 15px; background-color: white; border-radius: 5px;">
+                        <p><strong>联系人：</strong>张老师</p>
+                        <p><strong>联系电话：</strong>138-3333-4406</p>
+                        <p><strong>电子邮箱：</strong>1138768123@qq.com</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <p>© 2024 河北建筑工程学院 版权所有 | 项目五：老年轮椅外观专利展示</p>
+            <p>本页面展示内容仅为设计概念演示，实际产品以实物为准</p>
+        </footer>
+    </div>
+
+    <script>
+        // 添加交互效果
+        document.addEventListener('DOMContentLoaded', function() {
+            // 平滑滚动
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 20,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // 图片容器点击效果
+            const imageContainers = document.querySelectorAll('.image-container');
+            imageContainers.forEach(container => {
+                container.addEventListener('click', function() {
+                    this.style.transform = this.style.transform === 'scale(1.02)' ? 'scale(1)' : 'scale(1.02)';
+                });
+            });
+            
+            // 页面加载时高亮当前部分
+            function highlightCurrentSection() {
+                const sections = document.querySelectorAll('section');
+                const scrollPosition = window.scrollY + 100;
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    const sectionId = section.getAttribute('id');
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        // 可以在这里添加高亮逻辑
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', highlightCurrentSection);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>项目一：自发光尿盆实用新型专利展示</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #2c8c6d 0%, #1e6b52 100%);
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .btn-container {
+            margin-top: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #ff7e5f;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 0 10px;
+        }
+        
+        .btn:hover {
+            background-color: #ff6b47;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-secondary {
+            background-color: #2c8c6d;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #1e6b52;
+        }
+        
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        
+        @media (min-width: 992px) {
+            .content-wrapper {
+                grid-template-columns: 3fr 2fr;
+            }
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: #1e6b52;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eaeaea;
+        }
+        
+        .images-section {
+            margin-bottom: 30px;
+        }
+        
+        .image-container {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 25px;
+            transition: transform 0.3s ease;
+        }
+        
+        .image-container:hover {
+            transform: translateY(-5px);
+        }
+        
+        .image-label {
+            padding: 15px 20px;
+            background-color: #e8f5e9;
+            font-weight: 600;
+            color: #1e6b52;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .image-tag {
+            background-color: #2c8c6d;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+        
+        .image-content {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .landscape-image {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            max-height: 400px;
+            object-fit: cover;
+            border: 1px solid #eee;
+        }
+        
+        .portrait-image {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            max-height: 500px;
+            object-fit: cover;
+            border: 1px solid #eee;
+        }
+        
+        .image-note {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 10px;
+            text-align: center;
+            font-style: italic;
+        }
+        
+        .description-section {
+            margin-bottom: 30px;
+        }
+        
+        .description-content {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .patent-section {
+            margin-bottom: 30px;
+        }
+        
+        .features-list {
+            list-style-type: none;
+            margin-top: 20px;
+        }
+        
+        .features-list li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            align-items: center;
+        }
+        
+        .features-list li i {
+            color: #2c8c6d;
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .patent-details {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .patent-details p {
+            margin-bottom: 15px;
+            padding-left: 10px;
+            border-left: 3px solid #2c8c6d;
+        }
+        
+        .patent-details strong {
+            color: #1e6b52;
+        }
+        
+        .highlight-box {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #e8f5e9;
+            border-radius: 8px;
+            border-left: 5px solid #2c8c6d;
+        }
+        
+        .project-details {
+            margin-top: 40px;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f9fa;
+            border: 2px dashed #ccc;
+            border-radius: 5px;
+            padding: 40px 20px;
+            color: #777;
+        }
+        
+        .placeholder i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #aaa;
+        }
+        
+        .placeholder-text {
+            font-size: 1.1rem;
+            margin-top: 10px;
+            text-align: center;
+        }
+        
+        .image-size {
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 5px;
+        }
+        
+        .tech-specs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .spec-item {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        .spec-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c8c6d;
+            margin-bottom: 5px;
+        }
+        
+        .spec-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .innovation-points {
+            margin-top: 25px;
+        }
+        
+        .innovation-points li {
+            background-color: #f0f9ff;
+            margin-bottom: 10px;
+            padding: 12px 15px;
+            border-radius: 5px;
+            border-left: 4px solid #4a90e2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>项目一：自发光尿盆实用新型专利</h1>
+            <p class="subtitle">夜间可视 · 安全卫生 · 实用新型专利</p>
+            <div class="btn-container">
+                <a href="#design-images" class="btn">
+                    <i class="fas fa-images"></i> 查看效果图
+                </a>
+                <a href="#project-details" class="btn btn-secondary">
+                    <i class="fas fa-info-circle"></i> 项目详情
+                </a>
+            </div>
+        </header>
+        
+        <div class="content-wrapper">
+            <div class="main-content">
+                <section id="design-images" class="images-section">
+                    <h2 class="section-title">产品设计效果图</h2>
+                    
+                    <!-- 效果图1 -->
+                    <div class="image-container">
+                        <div class="image-label">
+                            <span>效果图一：自发光尿盆整体外观</span>
+                            <span class="image-tag">横向 6:8比例</span>
+                        </div>
+                        <div class="image-content">
+                            <!-- 这里是您可以替换的图片位置 -->
+                            <img src="images/xm1/1.jpg.lnk" alt="自发光尿盆整体外观" class="landscape-image">
+                            -->
+                            <p class="image-note">横向比例 6:8 | 展示自发光尿盆的整体外观和结构设计</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 效果图2 -->
+                    <div class="image-container">
+                        <div class="image-label">
+                            <span>效果图二：发光功能展示</span>
+                            <span class="image-tag">横向 6:8比例</span>
+                        </div>
+                        <div class="image-content">
+                            <!-- 这里是您可以替换的图片位置 -->
+                            <img src="images/xm1/2.jpg" alt="自发光尿盆发光效果" class="landscape-image">
+                            -->
+                            <p class="image-note">横向比例 6:8 | 展示自发光尿盆在夜间的发光效果</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 效果图3 -->
+                    <div class="image-container">
+                        <div class="image-label">
+                            <span>效果图三：结构分解图</span>
+                            <span class="image-tag">横向 6:8比例</span>
+                        </div>
+                        <div class="image-content">
+                            <!-- 这里是您可以替换的图片位置 -->
+                            <img src="images/xm1/3.jpg" alt="自发光尿盆结构分解" class="landscape-image">
+                            -->
+                            <p class="image-note">横向比例 6:8 | 展示自发光尿盆的内部结构和组件分解</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 专利证书 -->
+                    <div class="image-container">
+                        <div class="image-label">
+                            <span>实用新型专利证书</span>
+                            <span class="image-tag">竖向 A4比例</span>
+                        </div>
+                        <div class="image-content">
+                            <!-- 这里是您可以替换的图片位置 -->
+                            <img src="images/xm1/4.jpg" alt="实用新型专利证书" class="portrait-image">
+                            -->
+                            <p class="image-note">竖向A4比例 | 实用新型专利证书</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
+            <div class="sidebar">
+                <section class="description-section">
+                    <h2 class="section-title">设计说明</h2>
+                    <div class="description-content">
+                        <h3>设计背景与理念</h3>
+                        <p>针对夜间如厕时开灯影响睡眠、摸黑容易发生意外的问题，设计了这款自发光尿盆。采用环保发光材料，在黑暗环境下自动发出柔和光线，确保安全的同时不影响他人休息。</p>
+                        
+                        <h3 style="margin-top: 25px;">主要技术特点</h3>
+                        <ul class="features-list">
+                            <li><i class="fas fa-lightbulb"></i> <strong>自发光功能</strong>：采用长效蓄光材料，夜间自动发光</li>
+                            <li><i class="fas fa-shower"></i> <strong>易清洁结构</strong>：防水等级IPX4</li>
+                            <li><i class="fas fa-recycle"></i> <strong>环保材料</strong>：医用级PP材料，可回收利用</li>
+                            <li><i class="fas fa-user-injured"></i> <strong>防滑防摔</strong>：底部防滑设计，边缘圆润处理</li>
+                        </ul>
+                        
+                        <div class="tech-specs">
+                            <div class="spec-item">
+                                <div class="spec-value">IPX4</div>
+                                <div class="spec-label">防水等级</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-value">2.5kg</div>
+                                <div class="spec-label">产品重量</div>
+                            </div>
+                        </div>
+                        
+                        <div class="innovation-points">
+                            <h3 style="margin-top: 25px;">创新点</h3>
+                            <ul style="list-style-type: none; margin-top: 10px;">
+                                <li>1. 将蓄光材料应用于医疗护理用品，实现无源发光</li>
+                                <li>2. 热塑外螺纹塞结构可以逆时针旋转360°后与尿壶整体分离开来，以便于内部尿液的倾倒，而非从尿盆顶部倾倒</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="highlight-box">
+                            <p><i class="fas fa-bullseye"></i> <strong>设计目标：</strong>解决夜间如厕的痛点问题，为老年人、病人和夜间工作者提供安全、卫生、便捷的如厕解决方案，降低夜间跌倒风险。</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="patent-section">
+                    <h2 class="section-title">专利信息</h2>
+                    <div class="patent-details">
+                        <p><strong>专利名称：</strong>一种自发光尿盆</p>
+                        <p><strong>专利类型：</strong>实用新型专利</p>
+                        <p><strong>专利号：</strong>ZL 2021 2 2660275.6</p>
+                        <p><strong>申请日期：</strong>2021年11月2日</p>
+                        <p><strong>授权日期：</strong>2022年5月10日</p>
+                        <p><strong>专利权人：</strong>河北建筑工程学院</p>
+                        <p><strong>法律状态：</strong>专利权有效</p>
+                        <p><strong>发明人：</strong>张岳帆、朱斌</p>
+                        <p><strong>IPC分类号：</strong>A47k11/06</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+        
+        <section id="project-details" class="project-details">
+            <h2 class="section-title">项目一详情</h2>
+            <p>本项目为自发光尿盆实用新型专利，已获得国家知识产权局授权。该产品针对夜间如厕的安全卫生问题，创新性地将蓄光材料和结构设计应用于护理用品领域。</p>
+            
+            <div style="margin-top: 20px;">
+                <h3>应用场景</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;">
+                    <div style="background-color: #f0f9ff; padding: 15px; border-radius: 5px;">
+                        <h4><i class="fas fa-hospital"></i> 医疗机构</h4>
+                        <p>医院病房、养老院夜间使用</p>
+                    </div>
+                    <div style="background-color: #f0f9ff; padding: 15px; border-radius: 5px;">
+                        <h4><i class="fas fa-home"></i> 家庭护理</h4>
+                        <p>老年人、病人家庭护理</p>
+                    </div>
+                    <div style="background-color: #f0f9ff; padding: 15px; border-radius: 5px;">
+                        <h4><i class="fas fa-hotel"></i> 酒店宾馆</h4>
+                        <p>酒店客房夜间使用</p>
+                    </div>
+                    <div style="background-color: #f0f9ff; padding: 15px; border-radius: 5px;">
+                        <h4><i class="fas fa-plane"></i> 交通工具</h4>
+                        <p>火车、长途汽车夜间使用</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="highlight-box" style="margin-top: 25px;">
+                <h3><i class="fas fa-link"></i> 与作品集链接</h3>
+                <div style="margin-top: 15px;">
+                    <p>此页面为作品集"项目一"的详细展示页面。如需返回作品集查看其他项目：</p>
+                    <div style="margin-top: 15px;">
+                        <a href="index.html" class="btn" style="background-color: #2c8c6d; display: inline-block;">
+                            <i class="fas fa-arrow-left"></i> 返回作品集主页
+                        </a>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 20px; padding: 15px; background-color: white; border-radius: 5px;">
+                    <h4>项目联系</h4>
+                    <p>如需查看更详细的技术资料、专利文件或商业合作，请联系项目负责人：</p>
+                    <div style="margin-top: 10px;">
+                        <p><strong>联系人：</strong>张老师</p>
+                        <p><strong>联系电话：</strong>138-3333-4406</p>
+                        <p><strong>电子邮箱：</strong>1138768123@qq.com</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <p>© 2021 河北建筑工程学院版权所有 | 项目一：自发光尿盆实用新型专利展示</p>
+            <p>本页面展示内容仅为专利技术展示，实际产品以实物为准 | 专利号：ZL 2021 2 2660275.6</p>
+        </footer>
+    </div>
+
+    <script>
+        // 添加交互效果
+        document.addEventListener('DOMContentLoaded', function() {
+            // 平滑滚动
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 20,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // 图片容器点击效果
+            const imageContainers = document.querySelectorAll('.image-container');
+            imageContainers.forEach(container => {
+                container.addEventListener('click', function() {
+                    this.style.transform = this.style.transform === 'scale(1.02)' ? 'scale(1)' : 'scale(1.02)';
+                });
+            });
+            
+            // 添加返回作品集的链接检查
+            const backLink = document.querySelector('a[href="index.html"]');
+            if (backLink) {
+                backLink.addEventListener('click', function(e) {
+                    console.log('返回作品集主页');
+                });
+            }
+            
+            // 模拟发光效果
+            const glowEffect = document.querySelector('.placeholder[style*="background: linear-gradient(to bottom, #1a237e, #283593)"]');
+            if (glowEffect) {
+                setInterval(() => {
+                    glowEffect.style.boxShadow = glowEffect.style.boxShadow 
+                        ? '' 
+                        : '0 0 20px rgba(100, 150, 255, 0.7)';
+                }, 2000);
+            }
+        });
+    </script>
+</body>
+</html>

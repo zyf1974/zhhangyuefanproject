@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人首页 - 专业展示</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #f8f9fa;
+            --dark-color: #2c3e50;
+            --gray-color: #7f8c8d;
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 头部导航 */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* 主要内容区域 */
+        .main-content {
+            margin-top: 120px;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 50px;
+            margin-bottom: 80px;
+        }
+        
+        /* 个人资料区域 */
+        .profile-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .portrait-container {
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 8px solid white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            transition: var(--transition);
+        }
+        
+        .portrait-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .portrait {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .name {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .title {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--light-color);
+            color: var(--primary-color);
+            border-radius: 50%;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        /* 简介区域 */
+        .intro {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--secondary-color);
+            display: inline-block;
+        }
+        
+        .intro-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 30px;
+        }
+        
+        .highlight {
+            background-color: rgba(52, 152, 219, 0.1);
+            padding: 15px 20px;
+            border-left: 4px solid var(--secondary-color);
+            margin: 20px 0;
+            font-style: italic;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+        
+        /* 项目展示区域 */
+        .projects-section {
+            margin-top: 40px;
+        }
+        
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        
+        .project-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .project-content {
+            padding: 25px;
+        }
+        
+        .project-title {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .project-tag {
+            display: inline-block;
+            background-color: rgba(231, 76, 60, 0.1);
+            color: var(--accent-color);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .project-description {
+            color: var(--gray-color);
+            margin-bottom: 20px;
+        }
+        
+        /* 页脚 */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 60px;
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .profile-section {
+                order: 2;
+            }
+            
+            .intro {
+                order: 1;
+            }
+            
+            .portrait-container {
+                width: 280px;
+                height: 280px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .main-content {
+                margin-top: 100px;
+            }
+            
+            .portrait-container {
+                width: 240px;
+                height: 240px;
+            }
+            
+            .intro {
+                padding: 30px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .name {
+                font-size: 1.8rem;
+            }
+            
+            .intro {
+                padding: 20px;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部导航 -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">个人<span>首页</span></a>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">首页</a></li>
+                    <li><a href="about.html">关于我</a></li>
+                    <li><a href="portfolio.html">项目</a></li>
+                    <li><a href="contact.html">联系我</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 主要内容区域 -->
+    <div class="container">
+        <div class="main-content">
+            <!-- 个人资料区域 -->
+            <section class="profile-section">
+                <div class="portrait-container">
+                    <!-- 替换为您的实际肖像照片 -->
+                    <img src="images/1/1.jpg" 
+                         alt="专业肖像照" class="portrait">
+                </div>
+                <h1 class="name">张岳帆</h1>
+                <p class="title">高级产品设计师 & 创新工程师</p>
+                
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-weibo"></i></a>
+                    <a href="#"><i class="far fa-envelope"></i></a>
+                </div>
+            </section>
+            
+            <!-- 简介区域 -->
+            <section class="intro">
+                <h2 class="section-title">专业简介</h2>
+                <p class="intro-text">我是一位拥有21年设计教学经验的工业设计专家,致力于将前沿设计理论、艺术审美与新能源与健康工业设计相结合。</p>
+                
+                <div class="highlight">我在河北建筑工程学院任职28年,从事工业设计专业教学21年。到目前为止，共拥有实用新型专利四项，外观专利一项。主持和参与多项省级、市级、院级科研项目并通过鉴定验收。在核心期刊,省级期刊发表学术论文10余篇。</div>
+                
+                <p class="intro-text">我擅长从0到1的产品开发全流程，包括用户研究、概念设计、原型制作、工程实现和产品迭代。目前专注于智能健康设备和新能源科技产品的创新研发。</p>
+                
+                <a href="about.html" class="project-link" target="_blank">了解更多关于我</a>
+            </section>
+        </div>
+        
+        <!-- 项目展示区域 -->
+        <section class="projects-section">
+            <h2 class="section-title">精选项目展示</h2>
+            <div class="project-grid">
+                <!-- 项目1 -->
+                <div class="project-card">
+                    <img src="images/xm3/1.jpg" 
+                         alt="智能医疗设备专利效果图" class="project-image">
+                    <div class="project-content">
+                        <div class="project-tag">新项目 | 新能源设计</div>
+                        <h3 class="project-title">针对北方高寒环境的社区共享充电桩</h3>
+                        <p class="project-description">项目旨在解决北方高寒地区电动汽车充电难题。通过特殊设计的耐寒充电桩、智能温控系统及社区共享模式，为严寒环境下的电动车用户提供可靠、便捷的充电服务。</p>
+                        <a href="north-star-charging.html" class="project-link" target="_blank">查看项目详情</a>
+                    </div>
+                </div>
+                
+                <!-- 项目2 -->
+                <div class="project-card">
+                    <img src="images/xm1/2.jpg" 
+                         alt="智能医疗设备专利效果图" class="project-image">
+                    <div class="project-content">
+                        <div class="project-tag">实用新型专利 | 先进制造 | 新材料</div>
+                        <h3 class="project-title">一种自发光的尿盆</h3>
+                        <p class="project-description">本项目为自发光尿盆实用新型专利，已获得国家知识产权局授权。该产品针对夜间如厕的安全卫生问题，创新性地将蓄光材料和结构设计应用于护理用品领域。</p>
+                        <a href="self-luminous-urinal-patent.html" class="project-link" target="_blank">查看项目详情</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <p>© 2023 个人专业展示首页. 保留所有权利.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 简单的交互效果
+        document.addEventListener('DOMContentLoaded', function() {
+            // 为项目卡片添加点击效果
+            const projectCards = document.querySelectorAll('.project-card');
+            projectCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const link = this.querySelector('a.cta-button');
+                    if (link) {
+                        window.location.href = link.getAttribute('href');
+                    }
+                });
+            });
+            
+            // 导航链接平滑滚动
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // 添加滚动时导航栏效果
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                if (window.scrollY > 50) {
+                    header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                } else {
+                    header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>优秀学生作业详情</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: #4a6cf7;
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            margin-top: 20px;
+            font-size: 1rem;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .category-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+            justify-content: center;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+        
+        .category-tab {
+            background: #f0f4ff;
+            color: #4a6cf7;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .category-tab.active, .category-tab:hover {
+            background: #4a6cf7;
+            color: white;
+        }
+        
+        .category-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        
+        .category-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .project-section {
+            margin-bottom: 50px;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: #4a6cf7;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .project-content {
+            padding: 25px;
+        }
+        
+        .project-category {
+            color: #4a6cf7;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .project-title {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #333;
+            line-height: 1.3;
+        }
+        
+        .project-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .tag {
+            background: #f1f3ff;
+            color: #4a6cf7;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .project-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .project-link {
+            color: #4a6cf7;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s;
+        }
+        
+        .project-link:hover {
+            color: #3a5bd9;
+        }
+        
+        .project-date {
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            height: 150px;
+            cursor: pointer;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .modal img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            color: #666;
+            font-size: 0.9rem;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        @media (max-width: 768px) {
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .image-gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>优秀学生作业详情</h1>
+            <p class="subtitle">展示我在大学任教期间的优秀学生设计作品，包括毕业设计、家具设计、产品语意学和其它产品设计等多个领域</p>
+            <a href="portfolio.html" class="back-link">← 返回作品集</a>
+        </header>
+        
+        <div class="content">
+            <div class="category-tabs">
+                <button class="category-tab active" data-category="graduation">毕业设计</button>
+                <button class="category-tab" data-category="furniture">家具设计</button>
+                <button class="category-tab" data-category="semantics">产品语意学</button>
+                <button class="category-tab" data-category="smart">其它产品设计</button>
+            </div>
+            
+            <!-- 毕业设计部分 -->
+            <div class="category-content active" id="graduation">
+                <div class="project-section">
+                    <h2 class="section-title">毕业设计作品</h2>
+                    <p>我指导的毕业设计项目展示，全部为优秀毕业设计</p>
+                    
+                    <div class="project-grid">
+                        <!-- 毕业设计项目1 -->
+                        <div class="project-card">
+                            <img src="images/graduation/8.jpg" alt="概念篮球战靴" class="project-image">
+                            <div class="project-content">
+                                <span class="project-category">毕业设计</span>
+                                <h3 class="project-title">概念篮球战靴设计</h3>
+                                <p class="project-description">设计充分考虑了透气性、保护性、舒适性、包裹性、抓地性、轻便性，造型、色彩、材质都非常出色。</p>
+                                
+                                <div class="project-tags">
+                                    <span class="tag">人机工程学</span>
+                                    <span class="tag">用户体验</span>
+                                    <span class="tag">舒适</span>
+                                    <span class="tag">优秀毕业设计</span>
+                                </div>
+                                
+                                <div class="image-gallery">
+                                    <div class="gallery-item">
+                                        <img src="images/graduation/10.jpg" alt="设计草图" onclick="openModal(this)">
+                                    </div>
+                                    <div class="gallery-item">
+                                        <img src="images/graduation/11.jpg" alt="界面设计" onclick="openModal(this)">
+                                    </div>
+                                </div>
+                                
+                                <div class="project-actions">
+                                    <a href="#" class="project-link">查看详情 →</a>
+                                    <span class="project-date">2023年6月</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 毕业设计项目2 -->
+                        <div class="project-card">
+                            <img src="images/graduation/6.jpg" alt="改良电动自行车设计" class="project-image">
+                            <div class="project-content">
+                                <span class="project-category">毕业设计</span>
+                                <h3 class="project-title">改良电动自行车设计</h3>
+                                <p class="project-description">电动车车身选用铝合金和碳纤维做车体材料较经济美观轮胎与车座材料:碳纤维和钛合金的复合材料。这种特殊材质不仅具有极高的耐磨能力，并且能在季短的时间内让轮胎获得超强的抓地能力使电动自行车快速进入最佳状态行驶在路上在车身上融入星座文化元素，并通过不同的星座形状对外形进行塑造，努力做到线条流畅、造型灵动。删去一些繁琐的部件，将车架部分一体化，使造型简洁，时尚动感，方便组装拆卸。</p>
+                                
+                                <div class="project-tags">
+                                    <span class="tag">优良材质</span>
+                                    <span class="tag">人机工程学</span>
+                                    <span class="tag">造型元素</span>
+                                    <span class="tag">优秀毕业设计</span>
+                                </div>
+                                
+                                <div class="image-gallery">
+                                    <div class="gallery-item">
+                                        <img src="images/graduation/7.jpg" alt="概念图" onclick="openModal(this)">
+                                    </div>
+                                    <div class="gallery-item">
+                                        <img src="images/graduation/12.jpg" alt="材料研究" onclick="openModal(this)">
+                                    </div>   
+                                </div>
+                                
+                                <div class="project-actions">
+                                    <a href="#" class="project-link">查看详情 →</a>
+                                    <span class="project-date">2023年6月</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 毕业设计项目3 -->
+                        <div class="project-card">
+                            <img src="images/graduation/3.jpg" alt=家用多功能电子台灯"" class="project-image">
+                            <div class="project-content">
+                                <span class="project-category">毕业设计</span>
+                                <h3 class="project-title">家用多功能电子台灯设计</h3>
+                                <p class="project-description">本设计在底座的造型上采用了中国传统的太极图案，意在能够达到产品与环境“浑圆一体”的目的。</p>
+                                
+                                <div class="project-tags">
+                                    <span class="tag">传统文化元素</span>
+                                    <span class="tag">多功能</span>
+                                    <span class="tag">优秀毕业设计</span>
+                                </div>
+                                
+                                <div class="image-gallery">
+                                    <div class="gallery-item">
+                                        <img src="images/graduation/1.jpg" alt="概念图" onclick="openModal(this)">
+                                    </div>
+                                    <div class="gallery-item">
+                                        <img src="images/graduation/2.jpg" alt="材料研究" onclick="openModal(this)">
+                                    </div>
+                                    <div class="gallery-item">
+                                        <img src="images/graduation/5.jpg" alt="成品展示" onclick="openModal(this)">
+                                    </div>
+                                </div>
+                                
+                                <div class="project-actions">
+                                    <a href="#" class="project-link">查看详情 →</a>
+                                    <span class="project-date">2023年6月</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 家具设计部分 -->
+            <div class="category-content" id="furniture">
+                <div class="project-section">
+                    <h2 class="section-title">家具设计作品</h2>
+                    <p>探索形式与功能的平衡，创造实用且美观的家具设计。</p>
+                    
+                    <div class="project-grid">
+                        <!-- 家具设计项目1 -->
+                        <div class="project-card">
+                            <img src="images/furniture/05左慧娟.jpg" alt="模块化书架" class="project-image">
+                            <div class="project-content">
+                                <span class="project-category">家具设计</span>
+                                <h3 class="project-title">模块化组合书架设计</h3>
+                                <p class="project-description">该设计以五个方体为设计的来源，在设计之初经过调查分析,我认为在众多的书柜的造型中，长方形和正方形才是最符合人体工程学的造型。在材料的选择上以木材和玻璃为主要，突出现代感。</p>
+                                
+                                <div class="project-tags">
+                                    <span class="tag">模块化</span>
+                                    <span class="tag">木材工艺</span>
+                                    <span class="tag">空间优化</span>
+                                </div>
+                                
+                                <div class="image-gallery">
+                                    <div class="gallery-item">
+                                        <img src="images/furniture/05左慧娟1.jpg" alt="设计图" onclick="openModal(this)">
+                                    </div>
+                                    <div class="gallery-item">
+                                        <img src="images/furniture/05左慧娟2.jpg" alt="细节展示" onclick="openModal(this)">
+                                    </div>
+                                </div>
+                                
+                                <div class="project-actions">
+                                    <a href="#" class="project-link">查看详情 →</a>
+                                    <span class="project-date">2022年12月</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 家具设计项目2 -->
+                        <div class="project-card">
+                            <img src="images/furniture/09王丽娟.jpg" alt="书架设计" class="project-image">
+                            <div class="project-content">
+                                <span class="project-category">家具设计</span>
+                                <h3 class="project-title">人——书架设计</h3>
+                                <p class="project-description">该书架是为人-书合一书架，它具有很强的现代感，是人们休闲看书的良好工具。它可以让人们在物欲横流的世界找到一个修身养性的静谧的一角。该书架呈现的颜色色彩艳丽也起到了很好的室内装饰作用。该书架包含有一个人们休息看书空间，方便，便捷。</p>
+                                
+                                <div class="project-tags">
+                                    <span class="tag">现代感</span>
+                                    <span class="tag">休闲</span>
+                                    <span class="tag">室内装饰</span>
+                                </div>
+                                
+                                <div class="image-gallery">
+                                    <div class="gallery-item">
+                                        <img src="images/furniture/09王丽娟1.jpg" alt="概念草图" onclick="openModal(this)">
+                                    </div>
+                                    <div class="gallery-item">
+                                        <img src="images/furniture/09王丽娟2.jpg" alt="结构图" onclick="openModal(this)">
+                                    </div>
+                                </div>
+                                
+                                <div class="project-actions">
+                                    <a href="#" class="project-link">查看详情 →</a>
+                                    <span class="project-date">2022年10月</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 家具设计项目3 -->
+                        <div class="project-card">
+                            <img src="images/furniture/18袁庆燕.jpg" alt="书架设计" class="project-image">
+                            <div class="project-content">
+                                <span class="project-category">书架设计</span>
+                                <h3 class="project-title">寸阴寸金——书架设计</h3>
+                                <p class="project-description">此设计的亮点在于以太阳为原型，将书橱和钟表融入其中。十一个白色的书橱和一个黑色的书橱组成十二个整点。以八点不同于其他整点提醒人们“一寸光阴一寸金”。</p>
+                                
+                                <div class="project-tags">
+                                    <span class="tag">人体工程学</span>
+                                    <span class="tag">多功能</span>
+                                    <span class="tag">居家办公</span>
+                                </div>
+                                
+                                <div class="image-gallery">
+                                    <div class="gallery-item">
+                                        <img src="images/furniture/18袁庆燕1.jpg" alt="概念草图" onclick="openModal(this)">
+                                    </div>
+                                    <div class="gallery-item">
+                                        <img src="images/furniture/18袁庆燕2.jpg" alt="结构图" onclick="openModal(this)">
+                                    </div>
+                                </div>
+                                
+                                <div class="project-actions">
+                                    <a href="#" class="project-link">查看详情 →</a>
+                                    <span class="project-date">2022年10月</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 产品语意学部分 -->
+            <div class="category-content" id="semantics">
+                <div class="project-section">
+                    <h2 class="section-title">产品语意学作品</h2>
+                    <p>通过形态、色彩和材质传达产品的语意。</p>
+                    
+                    <div class="project-grid">
+                        <!-- 产品语意学项目1 -->
+                        <div class="project-card">
+                            <img src="images/semantics/1.jpg" alt="时钟" class="project-image">
+                            <div class="project-content">
+                                <span class="project-category">产品语意学</span>
+                                <h3 class="project-title">时钟设计</h3>
+                                <p class="project-description">本设计将古代铜钱与钟表相结合，融入情感设计，体会生活的记忆，珍惜时间，惜时如金。课程作业获得优秀评价。</p>
+                                
+                                <div class="project-tags">
+                                    <span class="tag">情感化设计</span>
+                                    <span class="tag">生活的记忆</span>
+                                    <span class="tag">优秀作业</span>
+                                </div>
+                                
+                                <div class="image-gallery">
+                                    <div class="gallery-item">
+                                        <img src="images/semantics/5.jpg" alt="概念草图" onclick="openModal(this)">
+                                    </div>
+                                    <div class="gallery-item">
+                                        <img src="images/semantics/6.jpg" alt="形态研究" onclick="openModal(this)">
+                                    </div>
+                                </div>
+                                
+                                <div class="project-actions">
+                                    <a href="#" class="project-link">查看详情 →</a>
+                                    <span class="project-date">2022年10月</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 产品语意学项目2 -->
+                        <div class="project-card">
+                            <img src="images/semantics/2.jpg" alt="灯具设计" class="project-image">
+                            <div class="project-content">
+                                <span class="project-category">产品语意学</span>
+                                <h3 class="project-title">灯具设计</h3>
+                                <p class="project-description">本设计为灯具设计，名为"蒲灯"。利用蒲公英进行外型设计。灯的开关为感应装置，利用了吹蒲公英的动作，吹灯时，便开启，再次吹灯时，灯则关闭。此开关的创新为本产品增加了许多乐趣。</p>
+                                
+                                <div class="project-tags">
+                                    <span class="tag">情感化设计</span>
+                                    <span class="tag">交互设计</span>
+                                    <span class="tag">光效研究</span>
+                                    <span class="tag">优秀作业</span>
+                                </div>
+                                
+                                <div class="image-gallery">
+                                    <div class="gallery-item">
+                                        <img src="images/semantics/7.jpg" alt="概念草图" onclick="openModal(this)">
+                                    </div>
+                                    <div class="gallery-item">
+                                        <img src="images/semantics/8.jpg" alt="形态研究" onclick="openModal(this)">
+                                    </div>
+                                </div>
+                                 <div class="project-actions">
+                                    <a href="#" class="project-link">查看详情 →</a>
+                                    <span class="project-date">2022年10月</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 产品语意学项目2 -->
+                        <div class="project-card">
+                            <img src="images/semantics/3.jpg" alt="灯具设计" class="project-image">
+                            <div class="project-content">
+                                <span class="project-category">产品语意学</span>
+                                <h3 class="project-title">灯具设计</h3>
+                                <p class="project-description">以月光宝盒为灵感来源的灯具设计，可调节照明范围，触目发亮，打开即亮两种模式，既有情怀又兼顾实用。课程作业获得优秀评价。</p>
+                                
+                                <div class="project-tags">
+                                    <span class="tag">情感化设计</span>
+                                    <span class="tag">交互设计</span>
+                                    <span class="tag">光效研究</span>
+                                    <span class="tag">优秀作业</span>
+                                </div>
+                                
+                                <div class="image-gallery">
+                                    <div class="gallery-item">
+                                        <img src="images/semantics/9.jpg" alt="概念草图" onclick="openModal(this)">
+                                    </div>
+                                    <div class="gallery-item">
+                                        <img src="images/semantics/10.jpg" alt="形态研究" onclick="openModal(this)">
+                                    </div>
+                                </div>
+                                 <div class="project-actions">
+                                    <a href="#" class="project-link">查看详情 →</a>
+                                    <span class="project-date">2022年10月</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 其它产品设计部分 -->
+            <div class="category-content" id="smart">
+                <div class="project-section">
+                    <h2 class="section-title">其它产品设计作品</h2>
+                    <p>包括一些其它产品设计和包装设计。</p>
+                    
+                    <div class="project-grid">
+                        <!-- 其它产品设计项目1 -->
+                        <div class="project-card">
+                            <img src="images/other designs/1和冬璇.jpg" alt="智能健康监测设备" class="project-image">
+                            <div class="project-content">
+                                <span class="project-category">其它产品设计</span>
+                                <h3 class="project-title">仿生扫地机器人</h3>
+                                <p class="project-description">海星五角的设计更易清理死角，营造更舒适卫生的环境。</p>
+                                
+                                <div class="project-tags">
+                                    <span class="tag">仿生</span>
+                                    <span class="tag">健康科技</span>
+                                    <span class="tag">用户体验</span>
+                                    <span class="tag">创新项目</span>
+                                </div>
+                                
+                                <div class="image-gallery">
+                                    <div class="gallery-item">
+                                        <img src="images/other designs/1和冬璇1.jpg" alt="产品原型" onclick="openModal(this)">
+                                    </div>
+                                    <div class="gallery-item">
+                                        <img src="images/other designs/1和冬璇2.jpg" alt="界面设计" onclick="openModal(this)">
+                                    </div>
+                                </div>
+                                
+                                <div class="project-actions">
+                                    <a href="#" class="project-link">查看详情 →</a>
+                                    <span class="project-date">2023年3月</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 其它产品设计项目2 -->
+                        <div class="project-card">
+                            <img src="images/other designs/2蟹蟹财神.jpg" alt="包装设计" class="project-image">
+                            <div class="project-content">
+                                <span class="project-category">包装设计</span>
+                                <h3 class="project-title">海南外卖快餐包装盒</h3>
+                                <p class="project-description">采用海南特色水产品和乐蟹为形象基础介于中国传统的财神形象制作成财神蟹造型包装，用于外卖包装,造型亲近可爱,识别度高。</p>
+                                
+                                <div class="project-tags">
+                                    <span class="tag">包装设计</span>
+                                    <span class="tag">海南特色</span>
+                                    <span class="tag">和乐蟹</span>
+                                    <span class="tag">旅游文化创意产品设计</span>
+                                </div>
+                                
+                                <div class="image-gallery">
+                                    <div class="gallery-item">
+                                        <img src="images/other designs/2蟹蟹财神1.jpg" alt="产品原型" onclick="openModal(this)">
+                                    </div>
+                                </div>
+                                
+                                <div class="project-actions">
+                                    <a href="#" class="project-link">查看详情 →</a>
+                                    <span class="project-date">2023年3月</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 图片模态框 -->
+        <div class="modal" id="imageModal">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div class="modal-content">
+                <img id="modalImage" src="" alt="放大图片">
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2023 优秀学生作业作品集 | 展示设计思维与创新能力</p>
+        </footer>
+    </div>
+
+    <script>
+        // 类别切换功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.category-tab');
+            const contents = document.querySelectorAll('.category-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    
+                    // 更新活动标签
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // 显示对应内容
+                    contents.forEach(content => {
+                        content.classList.remove('active');
+                        if (content.id === category) {
+                            content.classList.add('active');
+                        }
+                    });
+                });
+            });
+        });
+        
+        // 图片模态框功能
+        function openModal(img) {
+            document.getElementById('modalImage').src = img.src;
+            document.getElementById('imageModal').style.display = 'flex';
+        }
+        
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+        
+        // 点击模态框外部关闭
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('imageModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
