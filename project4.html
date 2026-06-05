@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>项目四 | “倚杖” 居家助行器</title>
+
+<style>
+:root {
+    /* ===== 绿调底色（克制、工业感） ===== */
+    --bg: #eef1ee;          /* 浅绿灰 */
+    --card: #f5f7f5;        /* 偏绿白卡片 */
+    --border: #d3d8d3;
+    --text-main: #1c1e1c;
+    --text-sub: #6c736c;
+    --accent: #4ca97e;      /* 医疗绿 / 工业绿 */
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text-main);
+}
+
+.container {
+    max-width: 1280px;
+    margin: auto;
+    padding: 60px 40px;
+}
+
+/* ===== Header ===== */
+.header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+.header h1 {
+    font-size: 32px;
+    font-weight: 600;
+}
+.header span {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    color: var(--text-sub);
+    letter-spacing: 3px;
+}
+
+/* ===== Card ===== */
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 40px;
+}
+
+.card-title {
+    font-size: 18px;
+    margin-bottom: 24px;
+    padding-left: 12px;
+    border-left: 4px solid var(--accent);
+}
+
+/* ===== Spec ===== */
+.spec-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+.spec-item h3 {
+    font-size: 13px;
+    color: var(--text-sub);
+    margin-bottom: 6px;
+}
+.spec-item p {
+    font-size: 15px;
+}
+
+/* ===== Gallery ===== */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+.gallery img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 10px;
+    background: #ddd;
+    cursor: zoom-in;
+    transition: transform .3s ease;
+}
+.gallery img:hover {
+    transform: scale(1.03);
+}
+
+/* ===== Features ===== */
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+.feature {
+    border-left: 3px solid var(--accent);
+    padding-left: 16px;
+}
+.feature h4 {
+    font-size: 15px;
+    margin-bottom: 6px;
+}
+.feature p {
+    font-size: 14px;
+    color: var(--text-sub);
+    line-height: 1.8;
+}
+
+/* ===== Text ===== */
+.desc p {
+    font-size: 15px;
+    line-height: 1.9;
+    color: #3a3d3a;
+}
+.desc p + p {
+    margin-top: 16px;
+}
+
+/* ===== Lightbox ===== */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.82);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    cursor: zoom-out;
+}
+.lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 960px) {
+    .gallery { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 640px) {
+    .gallery { grid-template-columns: 1fr; }
+    .feature-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+    <!-- Header -->
+    <div class="header">
+        <h1>“倚杖” 居家助行器</h1>
+        <span>PROJECT IV · MODERN HOME WALKER</span>
+    </div>
+
+    <!-- 项目简介 -->
+    <div class="card">
+        <div class="card-title">项目简介</div>
+        <div class="desc">
+            <p>
+                “倚杖”面向轻度行动不便人群，以家具化语言重构居家助行器形态。
+                在保留支撑稳定性的前提下，弱化医疗符号，使产品自然融入居住空间，
+                兼顾功能性、安全感与使用尊严。
+            </p>
+        </div>
+    </div>
+
+    <!-- 项目规格 -->
+    <div class="card">
+        <div class="card-title">项目规格</div>
+        <div class="spec-grid">
+            <div class="spec-item"><h3>产品尺寸</h3><p>574 × 490 × 810–950 mm</p></div>
+            <div class="spec-item"><h3>自重</h3><p>4.2 kg</p></div>
+            <div class="spec-item"><h3>承重能力</h3><p>≤ 120 kg</p></div>
+            <div class="spec-item"><h3>适用人群</h3><p>轻度行动不便者</p></div>
+            <div class="spec-item"><h3>主体材质</h3><p>铝合金 / ABS工程塑料</p></div>
+            <div class="spec-item"><h3>调节方式</h3><p>7档高度调节</p></div>
+        </div>
+    </div>
+
+    <!-- 效果图 -->
+    <div class="card">
+        <div class="card-title">产品效果图</div>
+        <div class="gallery">
+            <img src="images/xm4/7.jpg">
+            <img src="images/xm4/8.jpg">
+            <img src="images/xm4/9.jpg">
+        </div>
+    </div>
+
+    <!-- 细节图 -->
+    <div class="card">
+        <div class="card-title">实际细节图</div>
+        <div class="gallery">
+            <img src="images/xm4/4.jpg">
+            <img src="images/xm4/5.jpg">
+            <img src="images/xm4/6.jpg">
+        </div>
+    </div>
+
+    <!-- 核心功能 -->
+    <div class="card">
+        <div class="card-title">核心功能</div>
+        <div class="feature-grid">
+            <div class="feature">
+                <h4>家具化形态</h4>
+                <p>弱化医疗属性，融入居家环境。</p>
+            </div>
+            <div class="feature">
+                <h4>稳定支撑结构</h4>
+                <p>四点支撑，提升安全感。</p>
+            </div>
+            <div class="feature">
+                <h4>人性化色彩设计</h4>
+                <p>橙、银、黑色搭配有活力、有亲切感，不像医疗器械。</p>
+            </div>
+            <div class="feature">
+                <h4>高度可调</h4>
+                <p>适配不同身高与多场景使用。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 设计说明 -->
+    <div class="card">
+        <div class="card-title">设计说明</div>
+        <div class="desc">
+            <p>
+                设计初期将“倚杖”定位为介于家具与辅具之间的第三类产品。
+                结构上通过低重心提升稳定性；
+                形态上通过独特的色彩设计与柔和倒角削弱机械感，
+                最终实现“可用、可信、可居”的产品气质。
+            </p>
+        </div>
+    </div>
+
+</div>
+
+<script>
+document.querySelectorAll('.gallery img').forEach(img => {
+    img.addEventListener('click', () => {
+        const lb = document.createElement('div');
+        lb.className = 'lightbox';
+        lb.innerHTML = `<img src="${img.src}">`;
+        lb.addEventListener('click', () => document.body.removeChild(lb));
+        document.body.appendChild(lb);
+    });
+});
+</script>
+</body>
+</html>
