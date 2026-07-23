@@ -266,13 +266,49 @@
             color: var(--gray-color);
             margin-bottom: 20px;
         }
+
+        /* "了解更多"链接样式 */
+        .project-link {
+            display: inline-block;
+            color: var(--secondary-color);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .project-link:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+        
+        /* 浏览量显示样式 */
+        .page-views {
+            margin-top: 18px;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .page-views i {
+            font-size: 1.1rem;
+        }
+        
+        #view-count {
+            font-weight: 700;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 2px 14px;
+            border-radius: 20px;
+        }
         
         /* 页脚 */
         footer {
             background-color: var(--primary-color);
             color: white;
             text-align: center;
-            padding: 30px 0;
+            padding: 35px 0 45px;
             margin-top: 60px;
         }
         
@@ -420,18 +456,50 @@
     <!-- 页脚 -->
     <footer>
         <div class="container">
-            <p>© 2026 个人专业展示首页. 保留所有权利.</p>
+            <p class="copyright">© 2026 个人专业展示首页. 保留所有权利.</p>
         </div>
     </footer>
 
     <script>
-        // 简单的交互效果
         document.addEventListener('DOMContentLoaded', function() {
+            // ---------- 浏览量统计（localStorage持久化，初始10000） ----------
+            function initPageViews() {
+                const storageKey = 'my_site_page_views';
+                let views = localStorage.getItem(storageKey);
+                
+                if (views === null) {
+                    // 首次访问，设置为10000
+                    views = 10000;
+                } else {
+                    views = parseInt(views) + 1;  // 每次访问+1
+                }
+                
+                localStorage.setItem(storageKey, views);
+                return views;
+            }
+
+            const currentViews = initPageViews();
+
+            // 创建浏览量显示元素
+            const viewCountEl = document.createElement('div');
+            viewCountEl.className = 'page-views';
+            viewCountEl.innerHTML = `
+                <i class="fas fa-eye"></i> 
+                浏览量：<span id="view-count">${currentViews.toLocaleString()}</span>
+            `;
+
+            // 添加到页脚
+            const footerContainer = document.querySelector('footer .container');
+            if (footerContainer) {
+                footerContainer.appendChild(viewCountEl);
+            }
+
+            // ---------- 原有交互 ----------
             // 为项目卡片添加点击效果
             const projectCards = document.querySelectorAll('.project-card');
             projectCards.forEach(card => {
                 card.addEventListener('click', function() {
-                    const link = this.querySelector('a.cta-button');
+                    const link = this.querySelector('a.project-link');
                     if (link) {
                         window.location.href = link.getAttribute('href');
                     }
